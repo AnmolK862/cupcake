@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heart Background Page with Image</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #fdf6f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .background-hearts {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      clip-path: polygon(
+        50% 15%, 
+        85% 0%, 
+        100% 25%, 
+        75% 55%, 
+        50% 85%, 
+        25% 55%, 
+        0% 25%, 
+        15% 0%
+      );
+      opacity: 0.6;
+      animation: float 4s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.05));
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateY(-10px) translateX(5px) rotate(10deg) scale(1.05);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        opacity: 0.6;
+      }
+    }
+
+    .image-container {
+      position: relative;
+      z-index: 10;
+    }
+
+    .image-container img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(255, 150, 150, 0.5);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Animated heart background -->
+<div class="background-hearts" aria-hidden="true"></div>
+
+<!-- Your image -->
+<div class="image-container">
+  <img src="C:\Users\anmol\myimage.png" alt="Myimage">
+</div>
+
+<!-- JavaScript to create hearts -->
+<script>
+  const colors = [
+    '#FFB3BA', '#FFDFBA', '#FFFFBA',
+    '#BAFFC9', '#BAE1FF', '#E6CCFF', '#FFCCE5'
+  ];
+
+  const container = document.querySelector('.background-hearts');
+  const totalHearts = 250;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const padding = 40;
+
+  for (let i = 0; i < totalHearts; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+    heart.style.left = `${Math.random() * (vw - padding)}px`;
+    heart.style.top = `${Math.random() * (vh - padding)}px`;
+    heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+    heart.style.animationDelay = `${Math.random() * 5}s`;
+    heart.style.transform = `rotate(${(Math.random() * 60) - 30}deg)`;
+
+    container.appendChild(heart);
+  }
+</script>
+
+</body>
+</html>
