@@ -9,8 +9,7 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
-      background: black; /* Changed to black */
+      background: black;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
@@ -65,15 +64,28 @@
     .image-container {
       position: relative;
       z-index: 10;
+      padding: 10px;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .image-container img {
-      max-width: 60vw;
-      max-height: 60vh;
+      width: 90vw;
+      max-width: 600px;
+      height: auto;
+      max-height: 80vh;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(255, 150, 150, 0.5);
       display: block;
-      opacity: 0.9;
+      margin: 0 auto;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      .image-container img {
+        width: 90vw;
+        max-height: 70vh;
+      }
     }
   </style>
 </head>
@@ -117,4 +129,3 @@
 
 </body>
 </html>
-
